@@ -1,4 +1,11 @@
 #!/bin/sh
+### AURSTALL ###
+# A simple AUR package installer.
+# Author: Saksham Goel
+# License: GNU-GPL-3.0
+# Version: 1
+# URL: https://github/SakshamG7/aurstall
+
 if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
     echo "aurstall: A simple AUR package installer."
     echo "Usage: aurstall [options] [package]"
