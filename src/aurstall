@@ -1,0 +1,86 @@
+#!/bin/sh
+if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+    echo "aurstall: A simple AUR package installer."
+    echo "Usage: aurstall [options] [package]"
+    echo "Options:"
+    echo "-h | --help: display this help message."
+    echo "-i <package directory> | --install: install a package from the AUR."
+    echo "-ic <package directory> | --clean-install: install a package from the AUR and remove all the source files, not including directory."
+    echo "-r <package repo> | --repo-install: install a package from the AUR git repository."
+    echo "-rc <package repo> | --repo-clean-install: install a package from the AUR git repository and remove the source files."   
+elif [ "$1" = "-r" ] || [ "$1" = "--repo-install" ]; then
+    # Fail checks
+    if ! command -v git &> /dev/null; then
+        echo "aurstall: git is not installed. Try running 'sudo pacman -Syu git'"
+        exit
+    fi
+    if ! command -v makepkg &> /dev/null; then
+        echo "aurstall: makepkg is not installed. Try running 'sudo pacman -Syu base-devel'"
+        exit
+    fi
+    if [ -z "$2" ]; then
+        echo "aurstall: No repository provided. Try running 'aurstall -h' for help."
+        exit
+    fi
+    # Actual installation
+    git clone "$2" ./aurinstall
+    cd ./aurinstall
+    makepkg -si
+    cd ..
+    # Cleanup
+    echo "aurstall: Do you want to remove the source files? (y/n) "
+    read remove
+    if [ "$remove" = "y" ]; then
+        rm -rf ./aurinstall
+    fi    
+elif [ "$1" = "-rc" ] || [ "$1" = "--repo-clean-install" ]; then
+    # Fail checks
+    if ! command -v git &> /dev/null; then
+        echo "aurstall: git is not installed. Try running 'sudo pacman -Syu git'"
+        exit
+    fi
+    if ! command -v makepkg &> /dev/null; then
+        echo "aurstall: makepkg is not installed. Try running 'sudo pacman -Syu base-devel'"
+        exit
+    fi
+    if [ -z "$2" ]; then
+        echo "aurstall: No repository provided. Try running 'aurstall -h' for help."
+        exit
+    fi
+    # Actual installation and cleanup
+    git clone "$2" ./aurinstall
+    cd ./aurinstall
+    makepkg -si
+    cd ..
+    rm -rf ./aurinstall
+elif [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
+    # Fail checks
+    if ! command -v makepkg &> /dev/null; then
+        echo "aurstall: makepkg is not installed. Try running 'sudo pacman -Syu base-devel'"
+        exit
+    fi
+    if [ -z "$2" ]; then
+        echo "aurstall: No package provided. Try running 'aurstall -h' for help."
+        exit
+    fi
+    # Actual installation
+    cd "$2"
+    makepkg -si
+    cd ..
+elif [ "$1" = "-ic" ] || [ "$1" = "--clean-install" ]; then
+    # Fail checks
+    if ! command -v makepkg &> /dev/null; then
+        echo "aurstall: makepkg is not installed. Try running 'sudo pacman -Syu base-devel'"
+        exit
+    fi
+    if [ -z "$2" ]; then
+        echo "aurstall: No package provided. Try running 'aurstall -h' for help."
+        exit
+    fi
+    # Actual installation and cleanup
+    cd "$2"
+    makepkg -si
+    rm -rf ./*
+else
+    echo "aurstall: Invalid option. Try running 'aurstall -h' for help."
+fi
