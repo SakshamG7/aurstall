@@ -1,4 +1,4 @@
-# aurstall
+# AURstall
 A Useful Single Command Installion Tool For AUR Packages
 
 ## Commands
