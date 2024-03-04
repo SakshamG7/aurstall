@@ -30,15 +30,15 @@ elif [ "$1" = "-r" ] || [ "$1" = "--repo-install" ]; then
         exit
     fi
     # Actual Installation
-    git clone "$2" ./aurinstall
-    cd ./aurinstall
+    git clone "$2" ./aurstall
+    cd ./aurstall
     makepkg -si
     cd ..
     # Cleanup
     echo "aurstall: Do you want to remove the source files? (y/n) "
     read remove
     if [ "$remove" = "y" ]; then
-        rm -rf ./aurinstall
+        rm -rf ./aurstall
     fi    
 elif [ "$1" = "-rc" ] || [ "$1" = "--repo-clean-install" ]; then
     # Fail checks
@@ -55,11 +55,11 @@ elif [ "$1" = "-rc" ] || [ "$1" = "--repo-clean-install" ]; then
         exit
     fi
     # Actual Installation and Cleanup
-    git clone "$2" ./aurinstall
-    cd ./aurinstall
+    git clone "$2" ./aurstall
+    cd ./aurstall
     makepkg -si
     cd ..
-    rm -rf ./aurinstall
+    rm -rf ./aurstall
 elif [ "$1" = "-i" ] || [ "$1" = "--install" ]; then
     # Fail checks
     if ! command -v makepkg &> /dev/null; then
