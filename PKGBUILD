@@ -13,6 +13,6 @@ source=('aurstall::git://github.com/SakshamG7/aurstall.git')
 md5sums=('SKIP')
 
 package() {
-  # sh script
+  # install script
   install -D -m755 "${srcdir}/aurstall" "${pkgdir}/usr/bin/aurstall"
 }
