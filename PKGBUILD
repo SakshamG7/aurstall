@@ -13,5 +13,5 @@ md5sums=('c0095d5d6783c87d25e75d7846f8837c')
 
 package() {
   # install script
-  install -D -m755 "${srcdir}/aurstall" "${pkgdir}/usr/bin/aurstall"
+  install -D -m755 "${srcdir}/src/aurstall" "${pkgdir}/usr/bin/aurstall"
 }
