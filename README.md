@@ -1,5 +1,5 @@
 # AURstall
-A Useful Single Command Installion Tool For AUR Packages
+A Useful Single Command Installion Tool For AUR Packages (For Arch Linux)
 
 ## Commands
 ### Help Command
