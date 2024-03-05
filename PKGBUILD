@@ -9,9 +9,9 @@ depends=('base-devel')
 makedepends=('git')
 url="https://github.com/SakshamG7/aurstall"
 source=("https://github.com/SakshamG7/aurstall/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
-md5sums=('c0095d5d6783c87d25e75d7846f8837c')
+md5sums=('bec3590fc2f084d649a74586ae0e00ac')
 
 package() {
   # install script
-  install -D -m755 "${srcdir}/src/aurstall" "${pkgdir}/usr/bin/aurstall"
+  install -D -m755 "${srcdir}/aurstall" "${pkgdir}/usr/bin/aurstall"
 }
