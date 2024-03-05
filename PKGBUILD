@@ -1,5 +1,4 @@
 # Maintainer: Saksham Goel <mail@sakshamg.com>
-
 pkgname='aurstall'
 pkgver='1'
 pkgrel=1
@@ -9,7 +8,7 @@ license=('GPL')
 depends=('base-devel')
 makedepends=('git')
 url="https://github.com/SakshamG7/aurstall"
-source=("https://github.com/SakshamG7/aurstall/$pkgname-$pkgver.tar.gz")
+source=("https://github.com/SakshamG7/aurstall/blob/main/$pkgname-$pkgver.tar.gz")
 md5sums=('SKIP')
 
 package() {
