@@ -9,8 +9,16 @@ license=('GPL')
 depends=('base-devel')
 makedepends=('git')
 url="https://github.com/SakshamG7/aurstall"
-source=('aurstall::git://github.com/SakshamG7/aurstall.git')
+source=()
 md5sums=('SKIP')
+
+prepare() {
+  # clone the repository if src/aurstall doesn't exist
+  if [ ! -d "${srcdir}/aurstall" ]; then
+    git clone https://github.com/SakshamG7/aurstall.git ./
+  fi
+  return 0
+}
 
 package() {
   # install script
