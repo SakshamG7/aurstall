@@ -9,7 +9,7 @@ depends=('base-devel')
 makedepends=('git')
 url="https://github.com/SakshamG7/aurstall"
 source=("https://github.com/SakshamG7/aurstall/releases/download/v$pkgver/$pkgname-$pkgver.tar.gz")
-md5sums=('SKIP')
+md5sums=('c0095d5d6783c87d25e75d7846f8837c')
 
 package() {
   # install script
